@@ -12,6 +12,7 @@
 - [Frontend with Next.js](#frontend-with-nextjs)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Future Improvements](#future-improvements)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -110,6 +111,10 @@ cd frontend
 npm run dev
 
 Visit http://localhost:3000 to interact with the chatbot.
+
+## Future Improvements
+**End-to-End Integration:** Fully deploy the web application with comprehensive integration of the chatbot to enhance its accessibility.
+**Hierarchical Access Control:** Implement a feature that restricts access to confidential data based on the employee's position within the organization. This ensures that sensitive information is only accessible to those with the appropriate clearance.
 
 ## Contributing
 Contributions are welcome! Please create a pull request or open an issue for discussion.
