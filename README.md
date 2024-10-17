@@ -20,7 +20,25 @@
 GenAIus KT is a Q&A chatbot designed for knowledge management within a company. It assists employees, especially new interns and trainees, in understanding ongoing and previous projects. The chatbot responds to queries related to educational content and project details, making knowledge transfer seamless and efficient.
 
 ## Project Structure
-GenAIus/ ├── backend/ │ ├── Data_extraction/ │ ├── Data_preprocessing/ │ ├── QueryFile.py │ └── app.py ├── frontend/ │ └── [Next.js files] ├── Raw_Data/ └── README.md
+GenAIus/
+├── backend/
+│   ├── Data_extraction/
+│   │   ├── extractor.py
+│   │   ├── ScrapeHTML.py
+│   ├── Data_preprocessing/
+│   │   ├── Data_Cleaning/
+│   │   │   ├── splitting_data_to_chunks.py
+│   │   ├── processor.py
+│   │   └── all_cleaned_data.txt
+│   ├── QueryFile.py
+│   ├── app.py
+│   ├── environment.yml
+├── frontend/
+│   └── Next.js files
+├── Raw_Data/
+│   └── Raw data files used for training
+├── README.md
+
 
 
 ## Pipeline Overview
