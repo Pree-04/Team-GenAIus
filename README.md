@@ -20,6 +20,7 @@
 GenAIus KT is a Q&A chatbot designed for knowledge management within a company. It assists employees, especially new interns and trainees, in understanding ongoing and previous projects. The chatbot responds to queries related to educational content and project details, making knowledge transfer seamless and efficient.
 
 ## Project Structure
+```bash
 GenAIus/
 ├── backend/
 │   ├── Data_extraction/
@@ -37,9 +38,8 @@ GenAIus/
 │   └── Next.js files
 ├── Raw_Data/
 │   └── Raw data files used for training
-├── README.md
-
-
+├── README.md 
+```
 
 ## Pipeline Overview
 The pipeline for the GenAIus chatbot consists of several steps:
