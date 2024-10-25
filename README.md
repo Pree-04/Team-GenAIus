@@ -23,22 +23,28 @@ GenAIus KT is a Q&A chatbot designed for knowledge management within a company. 
 ```bash
 GenAIus/
 ├── backend/
-│   ├── Data_extraction/
-│   │   ├── extractor.py
-│   │   ├── ScrapeHTML.py
-│   ├── Data_preprocessing/
-│   │   ├── Data_Cleaning/
-│   │   │   ├── splitting_data_to_chunks.py
-│   │   ├── processor.py
-│   │   └── all_cleaned_data.txt
-│   ├── QueryFile.py
+│   ├── Data/
+│   │   └── (Initial raw data of multiple formats)
+│   ├── DataChunks/
+│   │   └── (Extracted data chunks from all_extracted_data.txt)
+│   ├── Downloads/
+│   │   └── (Connected with MongoDB to download data)
+│   ├── AllCleanData.txt
+│   ├── ExtractedRawData.txt
 │   ├── app.py
+│   ├── cleaningChunks.py
+│   ├── downloadRawFiles.py
+│   ├── embeddings.json
 │   ├── environment.yml
+│   ├── extractor.py
+│   ├── model.py
+│   ├── ScrapeHTML.py
+│   ├── splittingDataToChunks.py
+│   └── uploadRawFiles.py
 ├── frontend/
-│   └── Next.js files
-├── Raw_Data/
-│   └── Raw data files used for training
+│   └── (Next.js files)
 ├── README.md 
+└── LICENSE
 ```
 
 ## Pipeline Overview
@@ -71,7 +77,7 @@ The first step in the pipeline involves collecting data from various company doc
 Since company data is often confidential, dummy but realistic data has been created in these formats.
 
 ## Data Extraction
-Textual data extraction is performed using several Python libraries, which read the contents of various file formats and save them to a consolidated text file (`all_extracted_data.txt`). The libraries used include:
+Textual data extraction is performed using several Python libraries, which read the contents of various file formats and save them to a consolidated text file (`ExtractedRawData.txt`). The libraries used include:
 
 - `os`
 - `docx`
@@ -84,7 +90,7 @@ Textual data extraction is performed using several Python libraries, which read 
 - `selenium` (for web-based data)
 
 ## Data Preprocessing
-The extracted textual data is preprocessed using the Google Gemini AI model. Given the large dataset, the data is chunked into smaller pieces and processed in batches. The cleaned data is saved into a file called `all_cleaned_data.txt`.
+The extracted textual data is preprocessed using the Google Gemini AI model. Given the large dataset, the data is chunked into smaller pieces and processed in batches. The cleaned data is saved into a file called `AllCleanData.txt`.
 
 ### Important: Gemini API Key
 The project utilizes the Gemini API key for the data cleaning and training parts. After cloning or forking the project, make sure to replace the placeholder in the `.env` file with your own Gemini API key.
