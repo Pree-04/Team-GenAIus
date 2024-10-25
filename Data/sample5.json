@@ -1,0 +1,233 @@
+{
+    "canceled_orders": [
+      {
+        "order_id": "o101",
+        "customer_id": "c101",
+        "cancellation_date": "2024-10-10T15:30:00Z",
+        "original_order_date": "2024-10-05T12:00:00Z",
+        "total_amount": 199.99,
+        "currency": "USD",
+        "payment_method": "Credit Card",
+        "shipping_address": {
+          "name": "John Doe",
+          "address_line_1": "123 Main St",
+          "address_line_2": "Apt 4B",
+          "city": "New York",
+          "state": "NY",
+          "zip_code": "10001",
+          "country": "USA",
+          "phone_number": "+1-234-567-8901"
+        },
+        "cancellation_reason": "Customer changed their mind",
+        "products": [
+          {
+            "product_id": "p1",
+            "product_name": "Wireless Bluetooth Speaker",
+            "price": 99.99,
+            "quantity": 1,
+            "link": "https://example.com/products/p1",
+            "product_images": [
+              "https://example.com/images/p1_1.jpg",
+              "https://example.com/images/p1_2.jpg"
+            ],
+            "product_description": "A high-quality wireless speaker with immersive sound and deep bass. Perfect for parties or outdoor gatherings.",
+            "features": [
+              "Bluetooth 5.0 connectivity",
+              "12-hour battery life",
+              "Water-resistant design",
+              "Built-in microphone for hands-free calls"
+            ],
+            "warranty": {
+              "duration": "1 Year",
+              "details": "Covers manufacturing defects and malfunctions."
+            }
+          },
+          {
+            "product_id": "p2",
+            "product_name": "USB-C Charging Cable",
+            "price": 19.99,
+            "quantity": 2,
+            "link": "https://example.com/products/p2",
+            "product_images": [
+              "https://example.com/images/p2_1.jpg",
+              "https://example.com/images/p2_2.jpg"
+            ],
+            "product_description": "Durable USB-C charging cable for fast data transfer and charging. Compatible with all USB-C devices.",
+            "features": [
+              "Data transfer speed of up to 480 Mbps",
+              "Reversible connector design",
+              "Tangle-free design"
+            ],
+            "warranty": {
+              "duration": "6 Months",
+              "details": "Covers cable functionality under normal use."
+            }
+          }
+        ],
+        "customer_feedback": {
+          "rating": 2,
+          "comments": "I decided to go with a different brand for the speaker. I found a better option elsewhere."
+        },
+        "refund_status": {
+          "amount_refunded": 199.99,
+          "refund_date": "2024-10-11T10:00:00Z",
+          "refund_method": "Credit Card",
+          "processing_time": "3-5 business days"
+        },
+        "previous_interactions": [
+          {
+            "interaction_id": "i1",
+            "type": "view",
+            "product_id": "p1",
+            "interaction_date": "2024-10-04T10:00:00Z",
+            "duration_seconds": 120
+          },
+          {
+            "interaction_id": "i2",
+            "type": "add_to_cart",
+            "product_id": "p1",
+            "interaction_date": "2024-10-05T11:00:00Z",
+            "duration_seconds": 300
+          },
+          {
+            "interaction_id": "i3",
+            "type": "remove_from_cart",
+            "product_id": "p2",
+            "interaction_date": "2024-10-06T14:00:00Z",
+            "duration_seconds": 60
+          }
+        ],
+        "related_orders": [
+          {
+            "order_id": "o102",
+            "cancellation_date": "2024-10-09T16:45:00Z",
+            "total_amount": 49.99,
+            "currency": "USD",
+            "products": [
+              {
+                "product_id": "p3",
+                "product_name": "Portable Phone Charger",
+                "price": 49.99,
+                "quantity": 1,
+                "link": "https://example.com/products/p3",
+                "product_images": [
+                  "https://example.com/images/p3_1.jpg",
+                  "https://example.com/images/p3_2.jpg"
+                ],
+                "product_description": "Compact and lightweight, this portable charger is perfect for on-the-go charging. Fast charging technology ensures quick power up for your devices.",
+                "features": [
+                  "Compatible with most smartphones and tablets",
+                  "LED indicator for battery status",
+                  "Safety features to prevent overheating"
+                ]
+              }
+            ]
+          }
+        ],
+        "customer_service_interaction": {
+          "contact_date": "2024-10-10T09:00:00Z",
+          "contact_method": "Live Chat",
+          "agent_name": "Sarah",
+          "issues_addressed": [
+            {
+              "issue_id": "i4",
+              "description": "Clarification on cancellation process"
+            },
+            {
+              "issue_id": "i5",
+              "description": "Questions regarding refund timing"
+            }
+          ],
+          "resolution": "Provided guidance on the cancellation process and assured the customer of the refund timeline."
+        }
+      },
+      {
+        "order_id": "o102",
+        "customer_id": "c102",
+        "cancellation_date": "2024-10-09T18:45:00Z",
+        "original_order_date": "2024-10-06T09:15:00Z",
+        "total_amount": 150.00,
+        "currency": "USD",
+        "payment_method": "PayPal",
+        "shipping_address": {
+          "name": "Jane Smith",
+          "address_line_1": "456 Elm St",
+          "address_line_2": "",
+          "city": "Los Angeles",
+          "state": "CA",
+          "zip_code": "90001",
+          "country": "USA",
+          "phone_number": "+1-987-654-3210"
+        },
+        "cancellation_reason": "Item out of stock",
+        "products": [
+          {
+            "product_id": "p4",
+            "product_name": "Smartwatch Series 5",
+            "price": 150.00,
+            "quantity": 1,
+            "link": "https://example.com/products/p4",
+            "product_images": [
+              "https://example.com/images/p4_1.jpg",
+              "https://example.com/images/p4_2.jpg"
+            ],
+            "product_description": "Latest smartwatch with advanced health monitoring features. Perfect for fitness enthusiasts.",
+            "features": [
+              "Heart rate monitoring",
+              "GPS tracking",
+              "Customizable watch faces",
+              "Water-resistant up to 50 meters"
+            ],
+            "warranty": {
+              "duration": "1 Year",
+              "details": "Covers manufacturing defects and malfunction."
+            }
+          }
+        ],
+        "customer_feedback": {
+          "rating": 1,
+          "comments": "Very disappointed, the item was listed as available but turned out to be out of stock."
+        },
+        "refund_status": {
+          "amount_refunded": 150.00,
+          "refund_date": "2024-10-10T12:00:00Z",
+          "refund_method": "PayPal",
+          "processing_time": "Immediate"
+        },
+        "previous_interactions": [
+          {
+            "interaction_id": "i6",
+            "type": "view",
+            "product_id": "p4",
+            "interaction_date": "2024-10-06T08:00:00Z",
+            "duration_seconds": 150
+          },
+          {
+            "interaction_id": "i7",
+            "type": "add_to_cart",
+            "product_id": "p4",
+            "interaction_date": "2024-10-06T09:00:00Z",
+            "duration_seconds": 200
+          }
+        ],
+        "related_orders": [],
+        "customer_service_interaction": {
+          "contact_date": "2024-10-09T17:00:00Z",
+          "contact_method": "Email",
+          "agent_name": "Mike",
+          "issues_addressed": [
+            {
+              "issue_id": "i8",
+              "description": "Out of stock notification"
+            },
+            {
+              "issue_id": "i9",
+              "description": "Inquiry about potential restock"
+            }
+          ],
+          "resolution": "Informed the customer about the restocking schedule and apologized for the inconvenience."
+        }
+      }
+    ]
+  }
+  

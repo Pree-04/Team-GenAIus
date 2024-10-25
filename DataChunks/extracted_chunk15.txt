@@ -1,0 +1,500 @@
+    } 
+ 
+    setInput (''); 
+  }; 
+ 
+Page 14:
+  const  toggleTheme  = () => { 
+    setIsDarkMode ((prevMode ) => !prevMode ); 
+  }; 
+ 
+  const  handleNewChat  = () => { 
+    window .location .reload (); // Reloads the page  
+  }; 
+ 
+  const  selectChat  = (index ) => { 
+    setMessages (chatHistory [index ]); 
+    setCurrentChat (index ); 
+  }; 
+ 
+  return  ( 
+    <div className ="container" > 
+      <div className ="left-panel" > 
+        <h2>GenAIus KT </h2> 
+        <button  className ="new -chat"  onClick ={handleNewChat }>+ New Chat </button > 
+         
+        <hr className ="divider"  /> 
+ 
+        <ul className ="chat -history" > 
+          {chatHistory .map((_, index ) => ( 
+            <li key={index } onClick ={() => selectChat (index )}>Chat Message {index  + 1}</li> 
+          ))} 
+        </ul> 
+      </div> 
+      <div className ="chatbot -container" > 
+        <div className ="header" > 
+Page 15:
+          <span className ="TitleHeader" > 
+            <img src="/logo.png"  alt="Chatbot Logo"  className ="header -logo"  /> 
+            <h1>GenAIus KT </h1> 
+          </span> 
+          <IconButton  onClick ={toggleTheme } style ={{ color:  isDarkMode  ? '#ffc107'  : '#000'  
+}}> 
+            {isDarkMode  ? <LightModeIcon  /> : <DarkModeIcon  />} 
+          </IconButton > 
+        </div> 
+ 
+        <div className ="chat -window" > 
+          {messages .map((msg, index ) => ( 
+            <div key={index } className ={`message ${msg.sender } ${isDarkMode  ? 'dark'  : 
+'light' }`}> 
+              {msg.logo && <img src="/logo.png"  alt="Chatbot Logo"  className ="bot-logo"  />} 
+              <span dangerouslySetInnerHTML ={{ __html:  msg.text }} /> 
+            </div> 
+          ))} 
+          {loading  && (  
+            <div className ="loading -message" > 
+              <CircularProgress  size={24} /> 
+              <span className ="loading -text" >Working On It... </span> 
+            </div> 
+          )} 
+          <div ref={chatEndRef } /> 
+        </div> 
+ 
+        <div className ="input -container" > 
+          <input  
+            type="text"  
+Page 16:
+            className ={isDarkMode  ? 'dark'  : 'light' } 
+            value ={input } 
+            onChange ={(e) => setInput (e.target .value )} 
+            placeholder ="Type your message..."  
+            onKeyDown ={(e) => e.key === 'Enter'  && handleSend ()} 
+          /> 
+          <IconButton  onClick ={handleSend } style ={{ color:  isDarkMode  ? '#ffc107'  : '#246ffe'  
+}}> 
+            <SendIcon  /> 
+          </IconButton > 
+        </div> 
+      </div> 
+ 
+      <style  jsx>{` 
+        .container {  
+          display: flex;  
+          height: 100vh;  
+          width: 100vw;  
+        } 
+ 
+        .left-panel {  
+          width: 20%;  
+          background -color: var( --sidebar -bg); 
+          padding: 20px;  
+          border -right: 1px solid var( --border -color);  
+          display: flex;  
+          flex-direction: column;  
+        } 
+ 
+Page 17:
+        .left-panel h2 {  
+          font-size: 1.5rem;  
+          margin -bottom: 20px;  
+        } 
+ 
+        .new -chat {  
+          background -color: #246ffe;  
+          border: none;  
+          padding: 10px;  
+          margin -bottom: 20px;  
+          cursor: pointer;  
+          border -radius: 8px;  
+          color: #fff;  
+          font-size: 1rem;  
+          box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);  
+          transition: background -color 0.3s ease;  
+        } 
+ 
+        .new -chat:hover {  
+          background -color: #205ce4;  
+        } 
+ 
+        .divider {  
+          border: 0;  
+          height: 1px;  
+          background -color: var( --border -color);  
+          margin: 20px 0;  
+        } 
+ 
+Page 18:
+        .chat -history {  
+          list-style: none;  
+          padding: 0;  
+        } 
+ 
+        .chatbot -container {  
+          width: 80%;  
+          display: flex;  
+          flex-direction: column;  
+          background -color: var( --background -color);  
+          padding: 20px;  
+          overflow: hidden;  
+        } 
+ 
+        .header {  
+          display: flex;  
+          justify -content: space -between;  
+          align -items: center;  
+          margin -bottom: 10px;  
+        } 
+ 
+        .TitleHeader {  
+          display: flex;  
+          align -items: center; /* Align logo and title vertically */  
+        } 
+ 
+        .header -logo {  
+          width: 40px; /* Adjust size as needed */  
+          height: 40px; /* Adjust size as needed */  
+Page 19:
+          object -fit: cover;  
+          border -radius: 50%;  
+          margin -right: 10px; /* Add some space between logo and title */  
+        } 
+ 
+        h1 { 
+          font-size: 1.5rem; /* Adjust font size as needed */  
+          margin: 0; /* Remove default margin */  
+        } 
+ 
+        .chat -window {  
+          flex: 1;  
+          overflow -y: auto;  
+          margin -bottom: 10px;  
+          background -color: var( --chat-background -color);  
+          padding: 10px;  
+          border -radius: 10px;  
+          display: flex;  
+          flex-direction: column;  
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);  
+        } 
+ 
+        .message {  
+          padding: 12px;  
+          margin: 8px 0;  
+          border -radius: 18px;  
+          max-width: 60%;  
+          word -wrap: break -word;  
+          display: flex;  
+Page 20:
+          align -items: center;  
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);  
+          transition: background -color 0.3s ease;  
+        } 
+ 
+        .message.user {  
+          text-align: right;  
+          align -self: flex -end; 
+          background -color: #246ffe;  
+          color: white;  
+          border -radius: 18px 18px 0 18px;  
+        } 
+ 
+        .message.bot {  
+          text-align: left;  
+          align -self: flex -start;  
+          background -color: #f1f1f1;  
+          color: black;  
+          border -radius: 18px 18px 18px 0;  
+        } 
+ 
+        .bot-logo {  
+          width: 30px;  
+          height: 30px;  
+          object -fit: cover;  
+          border -radius: 50%;  
+          margin -right: 10px;  
+        } 
+ 
+Page 21:
+        .input -container {  
+          display: flex;  
+          align -items: center;  
+          border -top: 1px solid var( --border -color);  
+          padding: 10px 0;  
+        } 
+ 
+        input {  
+          flex: 1;  
+          padding: 12px 16px;  
+          border -radius: 30px;  
+          border: 1px solid var( --border -color);  
+          font-size: 1rem;  
+          margin -right: 10px;  
+        } 
+ 
+        input.light {  
+          background -color: white;  
+          color: black;  
+        } 
+ 
+        input.dark {  
+          background -color: #3c3c3c;  
+          color: white;  
+        } 
+ 
+        .loading -message {  
+          display: flex;  
+          align -items: center;  
+Page 22:
+          margin -top: 10px;  
+        } 
+ 
+        .loading -text {  
+          margin -left: 8px; /* Adjust the value to increase or decrease the space */  
+        } 
+      `}</style > 
+    </div> 
+  ); 
+}; 
+ 
+export  default  Chatbot ; 
+ 
+1. chatbot.js  ->  Functions Explanation  
+This file handles the main Chatbot Component  in the Next.js environment.  
+Imports  
+javascript  
+ 
+import  React , { useState, useEffect, useRef } from  'react' ; 
+import  styles from  './Chatbot.module.css' ; 
+import  axios from  'axios' ; 
+import  { AiOutlineSend  } from  'react -icons/ai' ; 
+• React, useState, useEffect, useRef : Core React functionalities.  
+o useState  manages the component’s state.  
+o useEffect  handles side effects (e.g., fetching data).  
+o useRef  maintains references to DOM elements.  
+• styles : Imports custom CSS styles from Chatbot.module.css . 
+• axios : A promise -based HTTP client for making API requests.  
+• AiOutlineSend : An icon from react -icons , used for the send button.  
+Page 23:
+Component: Chatbot  
+The primary React functional component for the chatbot interface.  
+State Variables  
+javascript  
+ 
+const  [messages, setMessages] = useState ([]); 
+const  [input, setInput] = useState (''); 
+const  [isLoading, setIsLoading] = useState (false ); 
+const  messagesEndRef = useRef (null); 
+• messages : An array holding the chat history, including user and bot messages.  
+• input : The current user input text in the chat input box.  
+• isLoading : Boolean indicating if a response is being fetched from the backend.  
+• messagesEndRef : A reference to the end of the chat messages, used for scrolling.  
+Function: scrollToBottom  
+javascript  
+ 
+const  scrollToBottom  = () => {  
+  messagesEndRef. current ?.scrollIntoView ({ behavior : 'smooth'  }); 
+}; 
+• Purpose : Scrolls the chat window to the latest message.  
+• Key Logic : Uses messagesEndRef  to ensure smooth scrolling to the latest content.  
+Effect Hook: useEffect  
+javascript  
+ 
+useEffect (() =>  { 
+  scrollToBottom (); 
+}, [messages]);  
+• Purpose : Automatically scrolls to the bottom of the chat when a new message is added.  
+• Dependency : Triggers whenever the messages  state changes.  
+Page 24:
+Function: handleInputChange  
+javascript  
+ 
+const  handleInputChange  = (event ) => {  
+  setInput (event. target .value ); 
+}; 
+• Purpose : Updates the input  state whenever the user types in the chat input box.  
+• Parameter : 
+o event : The input change event triggered by user interaction.  
+Function: handleSendMessage  
+javascript  
+ 
+const  handleSendMessage  = async  () => {  
+  if (input. trim() === '') return ; 
+ 
+  const  newMessage = { type: 'user' , text: input };  
+  setMessages ([...messages, newMessage]);  
+  setInput (''); 
+  setIsLoading (true); 
+ 
+  try { 
+    const  response = await  axios. post('http://localhost:5000/api/chat' , { message : input });  
+    const  botReply = { type: 'bot', text: response. data.reply  }; 
+    setMessages ((prevMessages ) => [...prevMessages, botReply]);  
+  } catch  (error) {  
+    const  errorMessage = { type: 'bot', text: 'Error: Unable to fetch response from the server.'  }; 
+    setMessages ((prevMessages ) => [...prevMessages, errorMessage]);  
+  } finally  { 
+    setIsLoading (false ); 
+Page 25:
+  } 
+}; 
+• Purpose : Handles the sending of a user’s message to the backend and updates the chat 
+history.  
+• Steps : 
+1. Checks if the input is not empty.  
+2. Creates a new message object for the user's input and updates the chat history.  
+3. Clears the input box and sets isLoading  to true. 
+4. Sends a POST request to the backend ( /api/chat ) with the user’s message using 
+axios . 
+5. Updates the chat with the bot's response or an error message if the request fails.  
+6. Resets the loading state after processing.  
+• Key Logic : Manages the chat flow wi th error handling and asynchronous API 
+communication.  
+Function: handleKeyPress  
+javascript  
+ 
+const  handleKeyPress  = (event ) => {  
+  if (event. key === 'Enter' ) { 
+    handleSendMessage (); 
+  } 
+}; 
+• Purpose : Triggers the send message action when the Enter key is pressed.  
+• Parameter : 
+o event : The key press event.  
+JSX Structure  
+The JSX defines the UI structure and behavior.  
+javascript  
+ 
+return  ( 
+Page 26:
+  <div className ={styles.chatbotContainer} > 
+    <div className ={styles.messagesContainer} > 
+      {messages.map((message, index) => (  
+        <div 
+          key={index}  
+          className ={ 
+            message.type  === 'user'  ? styles.userMessage  : styles.botMessage  
+          } 
+        > 
+          {message.text}  
+        </div> 
+      ))} 
+      <div ref={messagesEndRef}  /> 
+    </div> 
+    <div className ={styles.inputContainer} > 
+      <input  
+        type="text"  
+        value ={input}  
+        onChange ={handleInputChange}  
+        onKeyPress ={handleKeyPress}  
+        placeholder ="Type your message..."  
+      /> 
+      <button  onClick ={handleSendMessage}  disabled ={isLoading} > 
+        {isLoading ? '...' : <AiOutlineSend  />} 
+      </button > 
+    </div> 
+  </div> 
+); 
+Page 27:
+• Chat Window  (messagesContainer ): Iterates over messages  and displays them. 
+Messages are styled differently for the user and bot.  
+• Input Field  (inputContainer ): Contains a text input and a send button.  
+o The button displays a loading indicator when isLoading  is true. 
+o Send button is disabled when loading.  
+ 
+ 
+2. chat.js  
+import  axios  from  'axios' ; 
+ 
+export  default  async  function  handler (req, res) { 
+   if (req.method  === 'POST' ) { 
+      const  { message  } = req.body ; 
+ 
+      try { 
+         // Send the user's message to the Flask API  
+         const  response  = await  axios .post('http://localhost:5000/api/chat' , { message  }); 
+ 
+         // Send the Flask bot response back to the frontend  
+         const  botResponse  = response .data.reply ; // Get the reply from Flask  
+ 
+         res.status (200).json({ reply:  botResponse  }); 
+      } catch  (error ) { 
+         console .error ("Error communicating with the backend:" , error ); 
+         res.status (500).json({ message:  'Something went wrong'  }); 
+      } 
+   } else { 
+      res.status (405).json({ message:  'Method not allowed'  }); 
+   } 
+Page 28:
+} 
+ 
+2. chat.js -> Functio ns Explanation  
+ This file handles the Chat History  component, managing the chat records.  
+Imports  
+javascript  
+ 
+import  React , { useState } from  'react' ; 
+import  styles from  './Chat.module.css' ; 
+• React, useState : Standard React imports for managing the chat history component.  
+• styles : Custom styles for the chat history interface from Chat.module.css . 
+Component: Chat  
+A functional component that maintains and displays the chat history.  
+State Variables  
+javascript  
+ 
+const  [chatHistory, setChatHistory] = useState ([]); 
+const  [selectedChat, setSelectedChat] = useState (null); 
+• chatHistory : An array that stores all chat instances.  
+• selectedChat : Keeps track of the currently selected chat.  
+Function: handleChatSelect  
+javascript  
+ 
+const  handleChatSelect  = (index ) => {  
+  setSelectedChat (index);  
+}; 
+• Purpose : Sets the currently selected chat from the chat history based on an index.  
+• Parameter : 
+o index : The index of the selected chat in the chatHistory  array.  
+Page 29:
+Function: handleNewChat  
+javascript  
+ 
+const  handleNewChat  = () => {  
+  setChatHistory ([...chatHistory, { title: `Chat ${chatHistory.length + 1}`, messages : [] }]);  
+  setSelectedChat (chatHistory. length ); 
+}; 
+• Purpose : Creates a new chat instance and adds it to the chat history.  
+• Steps : 
+1. Creates a new chat object with a default title ( Chat <number> ) and an empty 
+message array.  
+2. Updates the chatHistory  array.  
+3. Selects the newly created chat.  
+Function: handleDeleteChat  
+javascript  
+ 
+const  handleDeleteChat  = (index ) => {  
+  const  updatedHistory = chatHistory. filter ((_, i) => i !== index);  
+  setChatHistory (updatedHistory);  
+  setSelectedChat (null); 
+}; 
+• Purpose : Deletes a chat from the chat history.  
+• Parameters : 
+o index : The index of the chat to delete.  
+• Steps : 
+1. Filters out the chat to be deleted using filter . 
+2. Updates the chatHistory  state with the modified array.  
+3. Resets selectedChat  to null. 
+JSX Structure  
+Page 30:
+Defines the structure for displaying chat history and controls.  
+javascript  
+ 
+return  ( 
+  <div className ={styles.chatContainer} > 
+    <button  onClick ={handleNewChat} >+ New Chat </button > 
+    <div className ={styles.chatList} > 
+      {chatHistory.map((chat, index) => (  
+        <div 
+          key={index}  
+          className ={`${styles.chatItem } ${ 
+            selectedChat  === index  ? styles.selected  : '' 
+          }`} 

@@ -1,0 +1,41 @@
+Task Name,Start Date,End Date,Duration,Responsible Person,Status
+Task 1,2024-08-28,2024-11-22,86,Alex Turner,In Progress
+Task 2,2024-08-25,2024-10-24,60,Liam O'Connor,In Progress
+Task 3,2024-01-30,2024-11-22,297,Nina Gomez,Delayed
+Task 4,2024-03-24,2024-06-09,77,Nina Gomez,On Hold
+Task 5,2024-04-27,2024-09-21,147,Liam O'Connor,Not Started
+Task 6,2024-11-12,2024-12-11,29,Liam O'Connor,On Hold
+Task 7,2024-05-20,2024-07-28,69,Sam Patel,Delayed
+Task 8,2024-03-16,2024-11-20,249,Alex Turner,On Hold
+Task 9,2024-04-09,2024-09-22,166,Alex Turner,Not Started
+Task 10,2024-07-29,2024-09-01,34,Liam O'Connor,Delayed
+Task 11,2024-01-09,2024-11-14,310,Alex Turner,On Hold
+Task 12,2024-10-30,2024-11-13,14,Liam O'Connor,Not Started
+Task 13,2024-11-19,2024-12-05,16,Sophia Lee,Completed
+Task 14,2024-12-17,2024-12-17,0,Nina Gomez,Not Started
+Task 15,2024-03-03,2024-06-02,91,Alex Turner,Delayed
+Task 16,2024-07-30,2024-12-18,141,Liam O'Connor,Completed
+Task 17,2024-12-05,2024-12-28,23,Nina Gomez,Delayed
+Task 18,2024-01-19,2024-10-10,265,Sam Patel,Completed
+Task 19,2024-10-07,2024-12-27,81,Alex Turner,In Progress
+Task 20,2024-10-08,2024-11-16,39,Alex Turner,On Hold
+Task 21,2024-08-19,2024-11-09,82,Nina Gomez,On Hold
+Task 22,2024-11-03,2024-11-19,16,Alex Turner,On Hold
+Task 23,2024-06-14,2024-12-24,193,Alex Turner,On Hold
+Task 24,2024-02-16,2024-04-12,56,Nina Gomez,On Hold
+Task 25,2024-06-01,2024-10-17,138,Nina Gomez,Not Started
+Task 26,2024-10-03,2024-10-04,1,Sam Patel,On Hold
+Task 27,2024-03-22,2024-11-27,250,Liam O'Connor,Delayed
+Task 28,2024-06-18,2024-11-20,155,Nina Gomez,On Hold
+Task 29,2024-10-25,2024-11-22,28,Sam Patel,Completed
+Task 30,2024-08-28,2024-12-25,119,Nina Gomez,Delayed
+Task 31,2024-03-12,2024-09-11,183,Sam Patel,In Progress
+Task 32,2024-01-18,2024-09-20,246,Sophia Lee,On Hold
+Task 33,2024-02-02,2024-07-02,151,Alex Turner,Delayed
+Task 34,2024-10-21,2024-12-18,58,Sophia Lee,In Progress
+Task 35,2024-11-13,2024-12-11,28,Liam O'Connor,Delayed
+Task 36,2024-12-25,2024-12-26,1,Alex Turner,On Hold
+Task 37,2024-10-12,2024-12-14,63,Nina Gomez,Delayed
+Task 38,2024-04-23,2024-04-29,6,Sophia Lee,Delayed
+Task 39,2024-04-23,2024-07-24,92,Sam Patel,Not Started
+Task 40,2024-03-31,2024-10-19,202,Sophia Lee,On Hold

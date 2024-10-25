@@ -1,0 +1,500 @@
+          onClick ={() => handleChatSelect(index)}  
+        > 
+          {chat.title}  
+          <button  onClick ={() => handleDeleteChat(index)}>Delete </button > 
+        </div> 
+      ))} 
+    </div> 
+  </div> 
+); 
+• New Chat Button : Adds a new chat instance to the history.  
+• Chat List  (chatList ): Iterates over chatHistory  and displays each chat instance.  
+o Each chat has a delete button to remove it from the list.  
+o Selected chats are highlighted using conditional styling ( selected ). 
+ 
+ 
+ 
+Page 31:
+Back End Code:  
+ 
+ 1. app.py  
+from flask import Flask, request, jsonify  
+from flask_cors import CORS  
+import logging  
+import os  
+from dotenv import load_dotenv  
+import google.generativeai as genai  
+from markdown import markdown  # Import markdown library for rendering Markdown  
+import numpy as np  
+from sklearn.metrics.pairwise import cosine_similarity  
+ 
+# Configure logging  
+logging.basicConfig(level=logging.INFO)  
+ 
+# Initialize Flask app  
+app = Flask(_name_)  
+CORS(app)  # Enable CORS for requests from the frontend  
+ 
+# Load environment variables for the API key  
+load_dotenv(dotenv_path=r"C: \Users \mahan \OneDrive \Desktop \GenAIus \Preetha \.env")  
+ 
+# Configure Gemini AI API key  
+api_key = os.getenv("GOOGLE_API_KEY")  
+if api_key:  
+    genai.configure(api_key=api_key)  
+else: 
+    logging.error("API key is not set in environment variables.")  
+Page 32:
+    exit(1)  
+ 
+# Create a model instance  
+model = genai.GenerativeModel("gemini -1.5-flash")  # Use your required model  
+ 
+# Load cleaned text from the file  
+file_path = 
+r"C:\Users \mahan \OneDrive \Desktop \GenAIus \Preetha \AllCleanData \AllCleanData.txt"  
+try: 
+    with open(file_path, 'r', encoding='utf -8') as file:  
+        cleaned_text = file.read()  
+except FileNotFoundError:  
+    logging.error(f"File not found: {file_path}")  
+    cleaned_text = None  
+ 
+# Function to generate embeddings for the cleaned data  
+def generate_embeddings(content, chunk_size=2000):  
+    model_name = "models/text -embedding -004"  
+    embeddings = []  
+ 
+    for i in range(0, len(content), chunk_size):  
+        chunk = content[i:i + chunk_size]  
+        try: 
+            # Get embeddings and extract the vector (assumed stored in 'embedding' key)  
+            chunk_embeddings = genai.embed_content(content=chunk, model=model_name)  
+            embeddings.append(chunk_embeddings['embedding'])  # Extract numeric vector  
+        except Exception as e:  
+            logging.error(f"Error embedding content: {e}")  
+            return None  
+Page 33:
+    return embeddings  
+ 
+# Generate embeddings once when the server starts  
+embeddings = generate_embeddings(cleaned_text) if cleaned_text else None  
+if embeddings is None:  
+    logging.error("Failed to generate embeddings.")  
+ 
+# Function to find the most relevant chunk using cosine similarity  
+def find_relevant_chunk(user_question):  
+    # Embed the user question  
+    try: 
+        query_embedding = genai.embed_content(content=user_question, model="models/text -
+embedding -004")  
+        query_vector = query_embedding['embedding']  # Extract the actual embedding vector  
+    except Exception as e:  
+        logging.error(f"Error embedding question: {e}")  
+        return None  
+ 
+    # Calculate cosine similarity between the query and all text chunks  
+    similarities = cosine_similarity([query_vector], embeddings)  
+    most_similar_index = np.argmax(similarities)  
+ 
+    # Retrieve the most similar text chunk  
+    chunk_size = 2000  
+    start_idx = most_similar_index * chunk_size  
+    return cleaned_text[start_idx:start_idx + chunk_size]  
+ 
+# Function to generate a response using the relevant chunk  
+def generate_response(user_question):  
+Page 34:
+    try: 
+        relevant_chunk = find_relevant_chunk(user_question)  
+        if not relevant_chunk:  
+            return "Sorry, I could not find any relevant information in the knowledge base."  
+ 
+        prompt = f"""  
+        -You are "GenAIus KT", and your role is to help with the onboarding process.  
+        -Answer the following question based on the knowledge base: '{user_question}'. Here is 
+the relevant information: {relevant_chunk}.  
+        -If you can't find relevant information in the context, generate an answer.  
+        -Be formal, friendly, and professional.  
+        - Donot provide ay technical question answers if it is not mentioned in the knowledgebase.  
+        """ 
+         
+        response = model.generate_content([prompt])  
+        return response.text if hasattr(response, 'text') else "No response content found."  
+    except Exception as e:  
+        logging.error(f"Error generating response: {e}")  
+        return "An error occurred while generating the response."  
+ 
+# API endpoint to handle user queries  
+@app.route('/api/chat', methods=['POST'])  
+def chat():  
+    data = request.json  # Get data from the POST request  
+    user_question = data.get('message')  
+ 
+    if not user_question:  
+        return jsonify({"error": "No message provided"}), 400  
+ 
+Page 35:
+    # Generate response from the model using the relevant chunk  
+    bot_response = generate_response(user_question)  
+ 
+    # Convert the bot's response to HTML using Markdown  
+    bot_response_html = markdown(bot_response)  
+ 
+    # Send the bot's response back to the frontend  
+    return jsonify({"reply": bot_response_html})  
+ 
+if _name_ == '_main_':  
+    app.run(debug=True)  
+ 
+1. app.py -> Functions Explained  
+Imports and Configuration  
+Before defining functions, the code imports necessary libraries and modules:  
+• Flask : The main framework used to create the web application.  
+• CORS : Allows cross -origin requests from the frontend.  
+• Logging : For tracking events that happen when the app runs.  
+• OS: For accessing environment variables and file paths.  
+• dotenv : Loads environment variables from a .env file. 
+• google.generativeai : A library to interact with Google’s generative AI.  
+• Markdown : Converts text from Markdown format to HTML.  
+• NumPy : A library for numerical computations, specifically used here for cosine 
+similarity.  
+• scikit -learn : Provides tools for machine learning; here, it’s used for calculating cosine 
+similarity.  
+Logging Configuration  
+python  
+ 
+logging.basicConfig(level=logging.INFO)  
+Page 36:
+• This line sets the logging level to INFO , which means that the app will output messages 
+that are of informational significance or higher (warnings, errors, etc.) to the console.  
+Flask App Initialization  
+python  
+ 
+app = Flask(__name__)  
+CORS(app)  # Enable CORS for requests from the frontend  
+• Initializes a Flask app instance and enables CORS, allowing it to accept requests from 
+different origins (e.g., the frontend).  
+Load Environment Variables  
+python  
+ 
+load_dotenv(dotenv_path= r"C:\Users \mahan \OneDrive \Desktop \GenAIus \Preetha \.env" ) 
+• Loads the environment variables defined in the .env file, which includes the API key 
+required for Google’s generative AI.  
+API Key Configuration  
+python  
+ 
+api_key = os.getenv( "GOOGLE_API_KEY" ) 
+if api_key:  
+    genai.configure(api_key=api_key)  
+else: 
+    logging.error( "API key is not set in environment variables." ) 
+    exit(1) 
+• Retrieves the Google API key from the environment variables and configures the 
+generative AI client. If the API key is not found, an error message is logged, and the 
+program exits.  
+Model Instance Creation  
+python  
+ 
+model = genai.GenerativeModel( "gemini -1.5-flash" )  # Use your required model  
+Page 37:
+• Creates an instance of the generative model using the specified model name. This 
+instance will be used to generate responses to user queries.  
+Loading Cleaned Text Data  
+python  
+ 
+file_path = 
+r"C:\Users \mahan \OneDrive \Desktop \GenAIus \Preetha \AllCleanData \AllCleanData.txt"  
+try: 
+    with open (file_path, 'r', encoding= 'utf-8') as file: 
+        cleaned_text = file.read()  
+except  FileNotFoundError:  
+    logging.error( f"File not found: {file_path} ") 
+    cleaned_text = None  
+• Attempts to load cleaned text data from a specified file. If the file is not found, an error 
+message is logged, and cleaned_text  is set to None . 
+Function: generate_embeddings  
+python  
+ 
+def generate_embeddings (content, chunk_size= 2000 ): 
+    model_name = "models/text -embedding -004"  
+    embeddings = []  
+ 
+    for i in range (0, len(content), chunk_size):  
+        chunk = content[i:i + chunk_size]  
+        try: 
+            # Get embeddings and extract the vector (assumed stored in 'embedding' key)  
+            chunk_embeddings = genai.embed_content(content=chunk, model=model_name)  
+            embeddings.append(chunk_embeddings[ 'embedding' ])  # Extract numeric vector  
+        except  Exception as e: 
+            logging.error( f"Error embedding content: {e}") 
+Page 38:
+            return  None  
+    return  embeddings  
+• Purpose : Generates embeddings for the cleaned text data by splitting it into chunks and 
+embedding each chunk.  
+• Parameters : 
+o content : The text content to be embedded.  
+o chunk_size : The size of each chunk of text to be processed (default is 2000 
+characters).  
+• Functionality : 
+o Loops through the content in chunks, embedding each chunk using the specified 
+model.  
+o Appends each embedding to the embeddings  list. 
+o Handles exceptions during the embedding process by logging errors and 
+returning None  if an error occurs.  
+Embeddings Generation on Server Start  
+python  
+ 
+embeddings = generate_embeddings(cleaned_text) if cleaned_text else None  
+if embeddings is None : 
+    logging.error( "Failed to generate embeddings." ) 
+• Calls the generate_embeddings  function to create embeddings from the cleaned text 
+when the server starts. If embeddings cannot be generated, an error message is logged.  
+Function: find_relevant_chunk  
+python  
+ 
+def find_relevant_chunk (user_question ): 
+    # Embed the user question  
+    try: 
+        query_embedding = genai.embed_content(content=user_question, model= "models/text -
+embedding -004" ) 
+        query_vector = query_embedding[ 'embedding' ]  # Extract the actual embedding vector  
+Page 39:
+    except  Exception as e: 
+        logging.error( f"Error embedding question: {e}") 
+        return  None  
+ 
+    # Calculate cosine similarity between the query and all text chunks  
+    similarities = cosine_similarity([query_vector], embeddings)  
+    most_similar_index = np.argmax(similarities)  
+ 
+    # Retrieve the most similar text chunk  
+    chunk_size = 2000  
+    start_idx = most_similar_index * chunk_size  
+    return  cleaned_text[start_idx:start_idx + chunk_size]  
+• Purpose : Finds the most relevant chunk of text in response to the user's question by 
+calculating the cosine similarity between the user's question and the pre -generated 
+embeddings.  
+• Parameters : 
+o user_question : The question posed by the user.  
+• Functionality : 
+o Embeds the user’s question using the same model as the text chunks.  
+o Calculates the cosine similarity between the embedded question and all pre -
+generated embeddings.  
+o Identifies the index of the most similar embedding.  
+o Returns the corresponding chunk of cleaned text based on the index.  
+Function: generate_response  
+python  
+ 
+def generate_response (user_question ): 
+    try: 
+        relevant_chunk = find_relevant_chunk(user_question)  
+        if not relevant_chunk:  
+Page 40:
+            return  "Sorry, I could not find any relevant information in the knowledge base."  
+ 
+        prompt = f""" 
+        -You are "GenAIus KT", and your role is to help with the onboarding process.  
+        -Answer the following question based on the knowledge base: ' {user_question} '. Here is 
+the relevant information: {relevant_chunk} . 
+        -If you can't find relevant information in the context, generate an answer.  
+        -Be formal, friendly, and professional.  
+        - Donot provide any technical question answers if it is not mentioned in the 
+knowledgebase.  
+        """ 
+         
+        response = model.generate_content([prompt])  
+        return  response.text if hasattr (response, 'text') else "No response content found."  
+    except  Exception as e: 
+        logging.error( f"Error generating response: {e}") 
+        return  "An error occurred while generating the response."  
+• Purpose : Generates a response based on the user's question and the relevant text chunk 
+found.  
+• Parameters : 
+o user_question : The question asked by the user.  
+• Functionality : 
+o Calls find_relevant_chunk  to retrieve the relevant text chunk for the question.  
+o Constructs a prompt for the generative model, instructing it to respond formally 
+and professionally.  
+o Generates a response using the generative model and returns the response text. 
+If an error occurs during this process, it logs the error and returns a generic error 
+message.  
+API Endpoint: /api/chat  
+python  
+ 
+Page 41:
+@app.route( '/api/chat' , methods=[ 'POST' ]) 
+def chat(): 
+    data = request.json  # Get data from the POST request  
+    user_question = data.get( 'message' ) 
+ 
+    if not user_question:  
+        return  jsonify({ "error" : "No message provided" }), 400 
+ 
+    # Generate response from the model using the relevant chunk  
+    bot_response = generate_response(user_question)  
+ 
+    # Convert the bot's response to HTML using Markdown  
+    bot_response_html = markdown(bot_response)  
+ 
+    # Send the bot's response back to the frontend  
+    return  jsonify({ "reply" : bot_response_html})  
+• Purpose : This function handles incoming chat requests from the frontend.  
+• Functionality : 
+o Expects a JSON payload with the user’s question in the field message . 
+o Validates that a message is provided; if not, it returns a 400 error.  
+o Calls generate_response  to produce a response based on the user’s question.  
+o Converts the response to HTML format using the Markdown library for proper 
+rendering on the frontend.  
+o Returns the response as JSON, which can be easily consumed by the frontend.  
+Running the Flask App  
+python  
+ 
+if __name__ == '__main__' : 
+    app.run(debug= True) 
+Page 42:
+• This block checks if the script is being run directly (as opposed to being imported as a 
+module). If it is, it starts the Flask development server in debug mode, allowing for real -
+time code updates and error logging.  
+ 
+ 
+2. query .py 
+import os  
+import logging  
+from dotenv import load_dotenv  
+import google.generativeai as genai  
+ 
+# Configure logging  
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - 
+%(message)s')  
+ 
+# Load environment variables for API key  
+load_dotenv()  
+ 
+# Configure the Gemini API key  
+api_key = os.getenv("GOOGLE_API_KEY")  
+if api_key:  
+    genai.configure(api_key=api_key)  
+else: 
+    logging.error("API key is not set in the environment variables.")  
+    exit(1)  # Exit the program if API key is not available  
+ 
+# Create a model instance  
+model = genai.GenerativeModel("gemini -1.5-flash")  # Adjust the model name as needed  
+ 
+# Function to list available models  
+Page 43:
+def list_available_models():  
+    try: 
+        models = genai.list_models()  
+        model_names = [model.name for model in models]  # Extracting model names  
+        logging.info("Available models: " + ", ".join(model_names))  
+    except Exception as e:  
+        logging.error(f"Error listing models: {e}")  
+ 
+# Function to read cleaned text from file with error handling  
+def get_clean_text(file_path):  
+    try: 
+        with open(file_path, 'r', encoding='utf -8') as file:  
+            text = file.read()  
+        return text  
+    except FileNotFoundError:  
+        logging.error(f"File not found: {file_path}")  
+        return None  
+    except Exception as e:  
+        logging.error(f"Error reading file: {e}")  
+        return None  
+ 
+# Function to generate embeddings for the cleaned data  
+def generate_embeddings(content, chunk_size=2000):  # Set a chunk size smaller than the limit  
+    model_name = "models/text -embedding -004"  # Use the available text embedding model  
+    embeddings = []  
+     
+    # Split the content into chunks  
+    for i in range(0, len(content), chunk_size):  
+        chunk = content[i:i + chunk_size]  
+Page 44:
+        try: 
+            chunk_embeddings = genai.embed_content(content=chunk, model=model_name)  
+            embeddings.append(chunk_embeddings)  
+        except Exception as e:  
+            logging.error(f"Error embedding content: {e}")  
+            return None  
+ 
+    return embeddings  # Return all embeddings as a list  
+ 
+# Function to generate a response from the generative model using RAG  
+def generate_response(user_question, cleaned_text):  
+    try: 
+        # Format the prompt to guide the model for RAG  
+        prompt = f"""Using the knowledge base, answer the following question: 
+'{user_question}'. Here is the information: {cleaned_text}. try to be relevant and answer to 
+some vague questions also. If you cannot find anything in the context document try to  generate 
+it by yourself.  
+        If someone ask who are you then asnwer that you are the 'your onboarding buddy'.  
+         Act professional and freindly but be sweet as the same time."""  
+         
+        # Using the generate_content method from the model instance  
+        response = model.generate_content([prompt])  # Use the model instance  
+        return response.text if hasattr(response, 'text') else "No response content found."  
+    except Exception as e:  
+        logging.error(f"Error generating response: {e}")  
+        return "An error occurred while generating the response."  
+ 
+def main():  
+    # File path to the cleaned text  
+    file_path = 
+"C:/Users/mahan/OneDrive/Desktop/GenAIus/Preetha/AllCleanData/AllCleanData.txt"  
+Page 45:
+ 
+    # Process the text and create the FAISS index  
+    logging.info("Processing cleaned data...")  
+    raw_text = get_clean_text(file_path)  
+    if raw_text is not None:  
+        logging.info("Text data loaded successfully.")  
+         
+        # List available models  
+        logging.info("Listing available models...")  
+        list_available_models()  
+ 
+        # Generate embeddings for the cleaned data  
+        embeddings = generate_embeddings(raw_text)  
+        if embeddings is not None:  
+            logging.info("Embeddings generated successfully.")  
+        else: 
+            logging.error("Failed to generate embeddings.")  
+            return  # Exit if embedding fails  
+    else: 
+        logging.info("Failed to read cleaned text.")  
+        return  # Exit if reading text fails  
+ 
+    # Take user queries in the console  
+    while True:  
+        user_question = input(" \nAsk a question from the cleaned data (or type 'exit' to quit): ")  
+        if user_question.lower() == 'exit':  
+            break  
+        answer = generate_response(user_question, raw_text)  # Pass cleaned text to the response 
+function  
+Page 46:
+        print("Reply from Gemini: ", answer)  
+ 
+if __name__ == "__main__":  
+    main()  
+ 
+2. query .py -> Functions Explained  
+Imports  
+python  
+ 
+import  os 
+import  logging  
+from  dotenv import  load_dotenv  
+import  google.generativeai as genai  
+• os: For file and environment variable handling.  
+• logging : To capture and record important events like errors.  
+• dotenv : To load environment variables (e.g., API key).  
+• genai : The AI library for handling generative responses.  
+Function: list_available_models  
+python  
+ 
+def list_available_models (): 
