@@ -1,0 +1,500 @@
+        .TitleHeader {
+          display: flex;
+          align-items: center; /* Align logo and title vertically */
+        }
+
+        .header-logo {
+          width: 40px; /* Adjust size as needed */
+          height: 40px; /* Adjust size as needed */
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 10px; /* Add some space between logo and title */
+        }
+
+        h1 {
+          font-size: 1.5rem; /* Adjust font size as needed */
+          margin: 0; /* Remove default margin */
+        }
+
+        .chat-window {
+          flex: 1;
+          overflow-y: auto;
+          margin-bottom: 10px;
+          background-color: var(--chat-background-color);
+          padding: 10px;
+          border-radius: 10px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .message {
+          padding: 12px;
+          margin: 8px 0;
+          border-radius: 18px;
+          max-width: 60%;
+          word-wrap: break-word;
+          display: flex;
+          align-items: center;
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+          transition: background-color 0.3s ease;
+        }
+
+        .message.user {
+          text-align: right;
+          align-self: flex-end;
+          background-color: #246ffe;
+          color: white;
+          border-radius: 18px 18px 0 18px;
+        }
+
+        .message.bot {
+          text-align: left;
+          align-self: flex-start;
+          background-color: #f1f1f1;
+          color: black;
+          border-radius: 18px 18px 18px 0;
+        }
+
+        .bot-logo {
+          width: 30px;
+          height: 30px;
+          object-fit: cover;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
+
+        .input-container {
+          display: flex;
+          align-items: center;
+          border-top: 1px solid var(--border-color);
+          padding: 10px 0;
+        }
+
+        input {
+          flex: 1;
+          padding: 12px 16px;
+          border-radius: 30px;
+          border: 1px solid var(--border-color);
+          font-size: 1rem;
+          margin-right: 10px;
+        }
+
+        input.light {
+          background-color: white;
+          color: black;
+        }
+
+        input.dark {
+          background-color: #3c3c3c;
+          color: white;
+        }
+
+        .loading-message {
+          display: flex;
+          align-items: center;
+          margin-top: 10px;
+        }
+
+        .loading-text {
+          margin-left: 8px; /* Adjust the value to increase or decrease the space */
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Chatbot;
+
+1. chatbot.js ->  Functions Explanation
+This file handles the main Chatbot Component in the Next.js environment.
+Imports
+javascript
+
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './Chatbot.module.css';
+import axios from 'axios';
+import { AiOutlineSend } from 'react-icons/ai';
+React, useState, useEffect, useRef: Core React functionalities.
+useState manages the component’s state.
+useEffect handles side effects (e.g., fetching data).
+useRef maintains references to DOM elements.
+styles: Imports custom CSS styles from Chatbot.module.css.
+axios: A promise-based HTTP client for making API requests.
+AiOutlineSend: An icon from react-icons, used for the send button.
+Component: Chatbot
+The primary React functional component for the chatbot interface.
+State Variables
+javascript
+
+const [messages, setMessages] = useState([]);
+const [input, setInput] = useState('');
+const [isLoading, setIsLoading] = useState(false);
+const messagesEndRef = useRef(null);
+messages: An array holding the chat history, including user and bot messages.
+input: The current user input text in the chat input box.
+isLoading: Boolean indicating if a response is being fetched from the backend.
+messagesEndRef: A reference to the end of the chat messages, used for scrolling.
+Function: scrollToBottom
+javascript
+
+const scrollToBottom = () => {
+  messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+};
+Purpose: Scrolls the chat window to the latest message.
+Key Logic: Uses messagesEndRef to ensure smooth scrolling to the latest content.
+Effect Hook: useEffect
+javascript
+
+useEffect(() => {
+  scrollToBottom();
+}, [messages]);
+Purpose: Automatically scrolls to the bottom of the chat when a new message is added.
+Dependency: Triggers whenever the messages state changes.
+Function: handleInputChange
+javascript
+
+const handleInputChange = (event) => {
+  setInput(event.target.value);
+};
+Purpose: Updates the input state whenever the user types in the chat input box.
+Parameter:
+event: The input change event triggered by user interaction.
+Function: handleSendMessage
+javascript
+
+const handleSendMessage = async () => {
+  if (input.trim() === '') return;
+
+  const newMessage = { type: 'user', text: input };
+  setMessages([...messages, newMessage]);
+  setInput('');
+  setIsLoading(true);
+
+  try {
+    const response = await axios.post('http://localhost:5000/api/chat', { message: input });
+    const botReply = { type: 'bot', text: response.data.reply };
+    setMessages((prevMessages) => [...prevMessages, botReply]);
+  } catch (error) {
+    const errorMessage = { type: 'bot', text: 'Error: Unable to fetch response from the server.' };
+    setMessages((prevMessages) => [...prevMessages, errorMessage]);
+  } finally {
+    setIsLoading(false);
+  }
+};
+Purpose: Handles the sending of a user’s message to the backend and updates the chat history.
+Steps:
+Checks if the input is not empty.
+Creates a new message object for the user's input and updates the chat history.
+Clears the input box and sets isLoading to true.
+Sends a POST request to the backend (/api/chat) with the user’s message using axios.
+Updates the chat with the bot's response or an error message if the request fails.
+Resets the loading state after processing.
+Key Logic: Manages the chat flow with error handling and asynchronous API communication.
+Function: handleKeyPress
+javascript
+
+const handleKeyPress = (event) => {
+  if (event.key === 'Enter') {
+    handleSendMessage();
+  }
+};
+Purpose: Triggers the send message action when the Enter key is pressed.
+Parameter:
+event: The key press event.
+JSX Structure
+The JSX defines the UI structure and behavior.
+javascript
+
+return (
+  <div className={styles.chatbotContainer}>
+    <div className={styles.messagesContainer}>
+      {messages.map((message, index) => (
+        <div
+          key={index}
+          className={
+            message.type === 'user' ? styles.userMessage : styles.botMessage
+          }
+        >
+          {message.text}
+        </div>
+      ))}
+      <div ref={messagesEndRef} />
+    </div>
+    <div className={styles.inputContainer}>
+      <input
+        type="text"
+        value={input}
+        onChange={handleInputChange}
+        onKeyPress={handleKeyPress}
+        placeholder="Type your message..."
+      />
+      <button onClick={handleSendMessage} disabled={isLoading}>
+        {isLoading ? '...' : <AiOutlineSend />}
+      </button>
+    </div>
+  </div>
+);
+Chat Window (messagesContainer): Iterates over messages and displays them. Messages are styled differently for the user and bot.
+Input Field (inputContainer): Contains a text input and a send button.
+The button displays a loading indicator when isLoading is true.
+Send button is disabled when loading.
+
+
+2. chat.js
+import axios from 'axios';
+
+export default async function handler(req, res) {
+   if (req.method === 'POST') {
+      const { message } = req.body;
+
+      try {
+         // Send the user's message to the Flask API
+         const response = await axios.post('http://localhost:5000/api/chat', { message });
+
+         // Send the Flask bot response back to the frontend
+         const botResponse = response.data.reply; // Get the reply from Flask
+
+         res.status(200).json({ reply: botResponse });
+      } catch (error) {
+         console.error("Error communicating with the backend:", error);
+         res.status(500).json({ message: 'Something went wrong' });
+      }
+   } else {
+      res.status(405).json({ message: 'Method not allowed' });
+   }
+}
+
+2. chat.js -> Functions Explanation 
+ This file handles the Chat History component, managing the chat records.
+Imports
+javascript
+
+import React, { useState } from 'react';
+import styles from './Chat.module.css';
+React, useState: Standard React imports for managing the chat history component.
+styles: Custom styles for the chat history interface from Chat.module.css.
+Component: Chat
+A functional component that maintains and displays the chat history.
+State Variables
+javascript
+
+const [chatHistory, setChatHistory] = useState([]);
+const [selectedChat, setSelectedChat] = useState(null);
+chatHistory: An array that stores all chat instances.
+selectedChat: Keeps track of the currently selected chat.
+Function: handleChatSelect
+javascript
+
+const handleChatSelect = (index) => {
+  setSelectedChat(index);
+};
+Purpose: Sets the currently selected chat from the chat history based on an index.
+Parameter:
+index: The index of the selected chat in the chatHistory array.
+Function: handleNewChat
+javascript
+
+const handleNewChat = () => {
+  setChatHistory([...chatHistory, { title: `Chat ${chatHistory.length + 1}`, messages: [] }]);
+  setSelectedChat(chatHistory.length);
+};
+Purpose: Creates a new chat instance and adds it to the chat history.
+Steps:
+Creates a new chat object with a default title (Chat <number>) and an empty message array.
+Updates the chatHistory array.
+Selects the newly created chat.
+Function: handleDeleteChat
+javascript
+
+const handleDeleteChat = (index) => {
+  const updatedHistory = chatHistory.filter((_, i) => i !== index);
+  setChatHistory(updatedHistory);
+  setSelectedChat(null);
+};
+Purpose: Deletes a chat from the chat history.
+Parameters:
+index: The index of the chat to delete.
+Steps:
+Filters out the chat to be deleted using filter.
+Updates the chatHistory state with the modified array.
+Resets selectedChat to null.
+JSX Structure
+Defines the structure for displaying chat history and controls.
+javascript
+
+return (
+  <div className={styles.chatContainer}>
+    <button onClick={handleNewChat}>+ New Chat</button>
+    <div className={styles.chatList}>
+      {chatHistory.map((chat, index) => (
+        <div
+          key={index}
+          className={`${styles.chatItem} ${
+            selectedChat === index ? styles.selected : ''
+          }`}
+          onClick={() => handleChatSelect(index)}
+        >
+          {chat.title}
+          <button onClick={() => handleDeleteChat(index)}>Delete</button>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+New Chat Button: Adds a new chat instance to the history.
+Chat List (chatList): Iterates over chatHistory and displays each chat instance.
+Each chat has a delete button to remove it from the list.
+Selected chats are highlighted using conditional styling (selected).
+
+
+
+Back End Code:
+
+ 1. app.py
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import logging
+import os
+from dotenv import load_dotenv
+import google.generativeai as genai
+from markdown import markdown  # Import markdown library for rendering Markdown
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
+# Initialize Flask app
+app = Flask(_name_)
+CORS(app)  # Enable CORS for requests from the frontend
+
+# Load environment variables for the API key
+load_dotenv(dotenv_path=r"C:\Users\mahan\OneDrive\Desktop\GenAIus\Preetha\.env")
+
+# Configure Gemini AI API key
+api_key = os.getenv("GOOGLE_API_KEY")
+if api_key:
+    genai.configure(api_key=api_key)
+else:
+    logging.error("API key is not set in environment variables.")
+    exit(1)
+
+# Create a model instance
+model = genai.GenerativeModel("gemini-1.5-flash")  # Use your required model
+
+# Load cleaned text from the file
+file_path = r"C:\Users\mahan\OneDrive\Desktop\GenAIus\Preetha\AllCleanData\AllCleanData.txt"
+try:
+    with open(file_path, 'r', encoding='utf-8') as file:
+        cleaned_text = file.read()
+except FileNotFoundError:
+    logging.error(f"File not found: {file_path}")
+    cleaned_text = None
+
+# Function to generate embeddings for the cleaned data
+def generate_embeddings(content, chunk_size=2000):
+    model_name = "models/text-embedding-004"
+    embeddings = []
+
+    for i in range(0, len(content), chunk_size):
+        chunk = content[i:i + chunk_size]
+        try:
+            # Get embeddings and extract the vector (assumed stored in 'embedding' key)
+            chunk_embeddings = genai.embed_content(content=chunk, model=model_name)
+            embeddings.append(chunk_embeddings['embedding'])  # Extract numeric vector
+        except Exception as e:
+            logging.error(f"Error embedding content: {e}")
+            return None
+    return embeddings
+
+# Generate embeddings once when the server starts
+embeddings = generate_embeddings(cleaned_text) if cleaned_text else None
+if embeddings is None:
+    logging.error("Failed to generate embeddings.")
+
+# Function to find the most relevant chunk using cosine similarity
+def find_relevant_chunk(user_question):
+    # Embed the user question
+    try:
+        query_embedding = genai.embed_content(content=user_question, model="models/text-embedding-004")
+        query_vector = query_embedding['embedding']  # Extract the actual embedding vector
+    except Exception as e:
+        logging.error(f"Error embedding question: {e}")
+        return None
+
+    # Calculate cosine similarity between the query and all text chunks
+    similarities = cosine_similarity([query_vector], embeddings)
+    most_similar_index = np.argmax(similarities)
+
+    # Retrieve the most similar text chunk
+    chunk_size = 2000
+    start_idx = most_similar_index * chunk_size
+    return cleaned_text[start_idx:start_idx + chunk_size]
+
+# Function to generate a response using the relevant chunk
+def generate_response(user_question):
+    try:
+        relevant_chunk = find_relevant_chunk(user_question)
+        if not relevant_chunk:
+            return "Sorry, I could not find any relevant information in the knowledge base."
+
+        prompt = f"""
+        -You are "GenAIus KT", and your role is to help with the onboarding process.
+        -Answer the following question based on the knowledge base: '{user_question}'. Here is the relevant information: {relevant_chunk}.
+        -If you can't find relevant information in the context, generate an answer.
+        -Be formal, friendly, and professional.
+        - Donot provide ay technical question answers if it is not mentioned in the knowledgebase. 
+        """
+        
+        response = model.generate_content([prompt])
+        return response.text if hasattr(response, 'text') else "No response content found."
+    except Exception as e:
+        logging.error(f"Error generating response: {e}")
+        return "An error occurred while generating the response."
+
+# API endpoint to handle user queries
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.json  # Get data from the POST request
+    user_question = data.get('message')
+
+    if not user_question:
+        return jsonify({"error": "No message provided"}), 400
+
+    # Generate response from the model using the relevant chunk
+    bot_response = generate_response(user_question)
+
+    # Convert the bot's response to HTML using Markdown
+    bot_response_html = markdown(bot_response)
+
+    # Send the bot's response back to the frontend
+    return jsonify({"reply": bot_response_html})
+
+if _name_ == '_main_':
+    app.run(debug=True)
+
+1. app.py -> Functions Explained
+Imports and Configuration
+Before defining functions, the code imports necessary libraries and modules:
+Flask: The main framework used to create the web application.
+CORS: Allows cross-origin requests from the frontend.
+Logging: For tracking events that happen when the app runs.
+OS: For accessing environment variables and file paths.
+dotenv: Loads environment variables from a .env file.
+google.generativeai: A library to interact with Google’s generative AI.
+Markdown: Converts text from Markdown format to HTML.
+NumPy: A library for numerical computations, specifically used here for cosine similarity.
+scikit-learn: Provides tools for machine learning; here, it’s used for calculating cosine similarity.
+Logging Configuration
+python
+
+logging.basicConfig(level=logging.INFO)
+This line sets the logging level to INFO, which means that the app will output messages that are of informational significance or higher (warnings, errors, etc.) to the console.
+Flask App Initialization
+python
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for requests from the frontend
+Initializes a Flask app instance and enables CORS, allowing it to accept requests from different origins (e.g., the frontend).
+Load Environment Variables

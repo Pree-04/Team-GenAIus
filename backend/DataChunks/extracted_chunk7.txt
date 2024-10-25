@@ -1,0 +1,500 @@
+            "product_id": "p3",
+            "product_name": "4K Ultra HD Smart TV",
+            "category": "Home Appliances",
+            "brand": "VisionTech",
+            "price": 599.99,
+            "currency": "USD",
+            "description": "Experience stunning picture quality with this 4K Ultra HD Smart TV. Features built-in streaming apps and voice control functionality.",
+            "stock_quantity": 30,
+            "rating": 4.8,
+            "reviews_count": 50,
+            "images": [
+                {
+                    "image_url": "https://example.com/images/product3_main.jpg",
+                    "description": "Main view of 4K Ultra HD Smart TV"
+                },
+                {
+                    "image_url": "https://example.com/images/product3_remote.jpg",
+                    "description": "Remote control features"
+                }
+            ],
+            "features": [
+                "4K Ultra HD Resolution",
+                "Smart TV with pre-installed apps",
+                "Voice Control with Alexa and Google Assistant",
+                "HDMI and USB ports"
+            ],
+            "specifications": {
+                "weight": "10kg",
+                "dimensions": "100 x 60 x 8 cm",
+                "connectivity": "Wi-Fi, Ethernet, HDMI",
+                "energy_rating": "A+"
+            },
+            "discount": {
+                "percentage": 20,
+                "start_date": "2024-10-10",
+                "end_date": "2024-10-30"
+            }
+        },
+        {
+            "product_id": "p4",
+            "product_name": "Ergonomic Office Chair",
+            "category": "Furniture",
+            "brand": "ComfortSeat",
+            "price": 149.99,
+            "currency": "USD",
+            "description": "Stay comfortable while you work with this ergonomic office chair designed for long hours of use. Adjustable height and lumbar support.",
+            "stock_quantity": 100,
+            "rating": 4.0,
+            "reviews_count": 60,
+            "images": [
+                {
+                    "image_url": "https://example.com/images/product4_main.jpg",
+                    "description": "Main view of Ergonomic Office Chair"
+                },
+                {
+                    "image_url": "https://example.com/images/product4_back.jpg",
+                    "description": "Back view highlighting lumbar support"
+                }
+            ],
+            "features": [
+                "Adjustable Height",
+                "Lumbar Support",
+                "360-Degree Swivel",
+                "Durable Fabric Material"
+            ],
+            "specifications": {
+                "weight": "12kg",
+                "dimensions": "60 x 60 x 100 cm",
+                "max_weight_capacity": "120kg",
+                "color_options": [
+                    "Black",
+                    "Blue",
+                    "Red"
+                ]
+            },
+            "discount": {
+                "percentage": 5,
+                "start_date": "2024-10-01",
+                "end_date": "2024-10-15"
+            }
+        },
+        {
+            "product_id": "p5",
+            "product_name": "Portable Power Bank",
+            "category": "Electronics",
+            "brand": "PowerPlus",
+            "price": 29.99,
+            "currency": "USD",
+            "description": "Compact and lightweight power bank with fast charging capabilities. Ideal for keeping your devices charged on the go.",
+            "stock_quantity": 200,
+            "rating": 4.6,
+            "reviews_count": 125,
+            "images": [
+                {
+                    "image_url": "https://example.com/images/product5_main.jpg",
+                    "description": "Main view of Portable Power Bank"
+                }
+            ],
+            "features": [
+                "Fast Charging Technology",
+                "Multiple USB Ports",
+                "LED Indicator Lights",
+                "Compact Design for Portability"
+            ],
+            "specifications": {
+                "weight": "200g",
+                "dimensions": "10 x 6 x 2 cm",
+                "capacity": "10,000 mAh",
+                "input/output": "USB-C, USB-A"
+            },
+            "discount": {
+                "percentage": 10,
+                "start_date": "2024-10-03",
+                "end_date": "2024-10-10"
+            }
+        },
+        {
+            "product_id": "p6",
+            "product_name": "Luxury Leather Wallet",
+            "category": "Fashion",
+            "brand": "StyleCraft",
+            "price": 49.99,
+            "currency": "USD",
+            "description": "Elegant leather wallet with multiple card slots and a sleek design. Perfect for daily use or special occasions.",
+            "stock_quantity": 50,
+            "rating": 4.3,
+            "reviews_count": 40,
+            "images": [
+                {
+                    "image_url": "https://example.com/images/product6_main.jpg",
+                    "description": "Main view of Luxury Leather Wallet"
+                },
+                {
+                    "image_url": "https://example.com/images/product6_interior.jpg",
+                    "description": "Interior view showing card slots"
+                }
+            ],
+            "features": [
+                "Genuine Leather Material",
+                "RFID Blocking Technology",
+                "Multiple Card Slots",
+                "Slim Design"
+            ],
+            "specifications": {
+                "weight": "150g",
+                "dimensions": "12 x 9 x 2 cm",
+                "color_options": [
+                    "Black",
+                    "Brown",
+                    "Navy Blue"
+                ]
+            },
+            "discount": {
+                "percentage": 15,
+                "start_date": "2024-10-01",
+                "end_date": "2024-10-15"
+            }
+        },
+        {
+            "product_id": "p7",
+            "product_name": "High-Performance Laptop",
+            "category": "Computers",
+            "brand": "TechPro",
+            "price": 1199.99,
+            "currency": "USD",
+            "description": "Powerful laptop with Intel Core i7 processor, 16GB RAM, and 512GB SSD. Ideal for gaming, graphic design, and productivity.",
+            "stock_quantity": 20,
+            "rating": 4.9,
+            "reviews_count": 25,
+            "images": [
+                {
+                    "image_url": "https://example.com/images/product7_main.jpg",
+                    "description": "Main view of High-Performance Laptop"
+                },
+                {
+                    "image_url": "https://example.com/images/product7_keyboard.jpg",
+                    "description": "Keyboard view showcasing backlight"
+                }
+            ],
+            "features": [
+                "Intel Core i7 Processor",
+                "16GB RAM",
+                "512GB SSD Storage",
+                "Dedicated Graphics Card"
+            ],
+            "specifications": {
+                "weight": "2kg",
+                "dimensions": "35 x 24 x 2 cm",
+                "battery_life": "Up to 10 hours",
+                "operating_system": "Windows 11"
+            },
+            "discount": {
+                "percentage": 5,
+                "start_date": "2024-10-05",
+                "end_date": "2024-10-25"
+            }
+        }
+    ]
+}
+--------------------------------------------------------------------------------
+Extracting data from JSON file: sample3.json
+
+{
+    "transactions": [
+        {
+            "transaction_id": "t1",
+            "customer_id": "c101",
+            "order_date": "2024-10-10T14:30:00Z",
+            "total_amount": 79.99,
+            "currency": "USD",
+            "payment_method": "Credit Card",
+            "shipping_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "street_address": "123 Elm St",
+                "city": "Springfield",
+                "state": "IL",
+                "zip_code": "62701",
+                "country": "USA"
+            },
+            "billing_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "street_address": "123 Elm St",
+                "city": "Springfield",
+                "state": "IL",
+                "zip_code": "62701",
+                "country": "USA"
+            },
+            "items": [
+                {
+                    "product_id": "p1",
+                    "product_name": "Wireless Bluetooth Headphones",
+                    "quantity": 1,
+                    "price": 79.99,
+                    "currency": "USD",
+                    "discount_applied": false
+                }
+            ],
+            "shipping_cost": 5.99,
+            "discount": {
+                "percentage": 0,
+                "amount": 0
+            },
+            "transaction_status": "Completed",
+            "tracking_number": "TN123456789",
+            "delivery_date_estimated": "2024-10-15",
+            "delivery_date_actual": null,
+            "created_at": "2024-10-10T14:00:00Z",
+            "updated_at": "2024-10-10T15:00:00Z"
+        },
+        {
+            "transaction_id": "t2",
+            "customer_id": "c102",
+            "order_date": "2024-10-11T09:15:00Z",
+            "total_amount": 199.99,
+            "currency": "USD",
+            "payment_method": "PayPal",
+            "shipping_address": {
+                "first_name": "Jane",
+                "last_name": "Smith",
+                "street_address": "456 Oak St",
+                "city": "Metropolis",
+                "state": "NY",
+                "zip_code": "10001",
+                "country": "USA"
+            },
+            "billing_address": {
+                "first_name": "Jane",
+                "last_name": "Smith",
+                "street_address": "456 Oak St",
+                "city": "Metropolis",
+                "state": "NY",
+                "zip_code": "10001",
+                "country": "USA"
+            },
+            "items": [
+                {
+                    "product_id": "p2",
+                    "product_name": "Smartwatch with Fitness Tracker",
+                    "quantity": 1,
+                    "price": 199.99,
+                    "currency": "USD",
+                    "discount_applied": true,
+                    "discount_amount": 30
+                }
+            ],
+            "shipping_cost": 0,
+            "discount": {
+                "percentage": 15,
+                "amount": 30
+            },
+            "transaction_status": "Shipped",
+            "tracking_number": "TN987654321",
+            "delivery_date_estimated": "2024-10-20",
+            "delivery_date_actual": null,
+            "created_at": "2024-10-11T09:00:00Z",
+            "updated_at": "2024-10-11T10:00:00Z"
+        },
+        {
+            "transaction_id": "t3",
+            "customer_id": "c103",
+            "order_date": "2024-10-12T12:45:00Z",
+            "total_amount": 449.98,
+            "currency": "USD",
+            "payment_method": "Debit Card",
+            "shipping_address": {
+                "first_name": "Michael",
+                "last_name": "Johnson",
+                "street_address": "789 Maple Ave",
+                "city": "Gotham",
+                "state": "NJ",
+                "zip_code": "07001",
+                "country": "USA"
+            },
+            "billing_address": {
+                "first_name": "Michael",
+                "last_name": "Johnson",
+                "street_address": "789 Maple Ave",
+                "city": "Gotham",
+                "state": "NJ",
+                "zip_code": "07001",
+                "country": "USA"
+            },
+            "items": [
+                {
+                    "product_id": "p3",
+                    "product_name": "4K Ultra HD Smart TV",
+                    "quantity": 1,
+                    "price": 599.99,
+                    "currency": "USD",
+                    "discount_applied": true,
+                    "discount_amount": 150
+                },
+                {
+                    "product_id": "p4",
+                    "product_name": "Ergonomic Office Chair",
+                    "quantity": 1,
+                    "price": 149.99,
+                    "currency": "USD",
+                    "discount_applied": false
+                }
+            ],
+            "shipping_cost": 10.99,
+            "discount": {
+                "percentage": 20,
+                "amount": 150
+            },
+            "transaction_status": "Completed",
+            "tracking_number": "TN123987456",
+            "delivery_date_estimated": "2024-10-18",
+            "delivery_date_actual": null,
+            "created_at": "2024-10-12T12:30:00Z",
+            "updated_at": "2024-10-12T13:00:00Z"
+        },
+        {
+            "transaction_id": "t4",
+            "customer_id": "c101",
+            "order_date": "2024-10-13T08:00:00Z",
+            "total_amount": 29.99,
+            "currency": "USD",
+            "payment_method": "Credit Card",
+            "shipping_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "street_address": "123 Elm St",
+                "city": "Springfield",
+                "state": "IL",
+                "zip_code": "62701",
+                "country": "USA"
+            },
+            "billing_address": {
+                "first_name": "John",
+                "last_name": "Doe",
+                "street_address": "123 Elm St",
+                "city": "Springfield",
+                "state": "IL",
+                "zip_code": "62701",
+                "country": "USA"
+            },
+            "items": [
+                {
+                    "product_id": "p5",
+                    "product_name": "Portable Power Bank",
+                    "quantity": 1,
+                    "price": 29.99,
+                    "currency": "USD",
+                    "discount_applied": false
+                }
+            ],
+            "shipping_cost": 5.99,
+            "discount": {
+                "percentage": 0,
+                "amount": 0
+            },
+            "transaction_status": "Pending",
+            "tracking_number": null,
+            "delivery_date_estimated": "2024-10-16",
+            "delivery_date_actual": null,
+            "created_at": "2024-10-13T07:50:00Z",
+            "updated_at": "2024-10-13T08:30:00Z"
+        },
+        {
+            "transaction_id": "t5",
+            "customer_id": "c104",
+            "order_date": "2024-10-14T11:30:00Z",
+            "total_amount": 49.99,
+            "currency": "USD",
+            "payment_method": "PayPal",
+            "shipping_address": {
+                "first_name": "Emily",
+                "last_name": "Davis",
+                "street_address": "321 Birch Rd",
+                "city": "Star City",
+                "state": "CA",
+                "zip_code": "90001",
+                "country": "USA"
+            },
+            "billing_address": {
+                "first_name": "Emily",
+                "last_name": "Davis",
+                "street_address": "321 Birch Rd",
+                "city": "Star City",
+                "state": "CA",
+                "zip_code": "90001",
+                "country": "USA"
+            },
+            "items": [
+                {
+                    "product_id": "p6",
+                    "product_name": "Luxury Leather Wallet",
+                    "quantity": 1,
+                    "price": 49.99,
+                    "currency": "USD",
+                    "discount_applied": true,
+                    "discount_amount": 10
+                }
+            ],
+            "shipping_cost": 4.99,
+            "discount": {
+                "percentage": 15,
+                "amount": 10
+            },
+            "transaction_status": "Completed",
+            "tracking_number": "TN456789123",
+            "delivery_date_estimated": "2024-10-21",
+            "delivery_date_actual": null,
+            "created_at": "2024-10-14T11:00:00Z",
+            "updated_at": "2024-10-14T12:00:00Z"
+        }
+    ]
+}
+--------------------------------------------------------------------------------
+Extracting data from JSON file: sample4.json
+
+{
+    "search_history": [
+        {
+            "customer_id": "c101",
+            "search_id": "sh1",
+            "search_query": "wireless headphones",
+            "search_date": "2024-10-05T10:00:00Z",
+            "results_count": 20,
+            "filters_applied": {
+                "category": "Electronics",
+                "brand": [
+                    "Sony",
+                    "Bose",
+                    "Apple"
+                ],
+                "price_range": {
+                    "min": 50,
+                    "max": 500
+                },
+                "rating": {
+                    "min": 4.0,
+                    "max": 5.0
+                },
+                "features": {
+                    "noise_cancellation": true,
+                    "water_resistant": true,
+                    "battery_life": {
+                        "min": 20,
+                        "max": 40
+                    }
+                }
+            },
+            "results": [
+                {
+                    "product_id": "p1",
+                    "product_name": "Bose QuietComfort 35 II",
+                    "price": 249.99,
+                    "currency": "USD",
+                    "rating": 4.8,
+                    "link": "https://example.com/products/p1",
+                    "availability": "In Stock",
+                    "discount": {
+                        "amount": 30,
+                        "type": "Percentage",
+                        "valid_until": "2024-10-20"

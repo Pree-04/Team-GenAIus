@@ -1,0 +1,500 @@
+                    },
+                    "product_images": [
+                        "https://example.com/images/p1_1.jpg",
+                        "https://example.com/images/p1_2.jpg"
+                    ],
+                    "reviews": [
+                        {
+                            "review_id": "r1",
+                            "review_text": "Amazing sound quality and comfortable to wear for long periods.",
+                            "review_date": "2024-10-06",
+                            "reviewer_name": "Jane D.",
+                            "review_rating": 5
+                        },
+                        {
+                            "review_id": "r2",
+                            "review_text": "Good noise cancellation but a bit pricey.",
+                            "review_date": "2024-10-07",
+                            "reviewer_name": "John S.",
+                            "review_rating": 4
+                        }
+                    ]
+                },
+                {
+                    "product_id": "p2",
+                    "product_name": "Sony WH-1000XM4",
+                    "price": 349.99,
+                    "currency": "USD",
+                    "rating": 4.9,
+                    "link": "https://example.com/products/p2",
+                    "availability": "Pre-Order",
+                    "discount": {
+                        "amount": 50,
+                        "type": "Percentage",
+                        "valid_until": "2024-11-01"
+                    },
+                    "product_images": [
+                        "https://example.com/images/p2_1.jpg",
+                        "https://example.com/images/p2_2.jpg"
+                    ],
+                    "reviews": [
+                        {
+                            "review_id": "r3",
+                            "review_text": "Best headphones I have ever owned! Worth every penny!",
+                            "review_date": "2024-10-06",
+                            "reviewer_name": "Alice F.",
+                            "review_rating": 5
+                        },
+                        {
+                            "review_id": "r4",
+                            "review_text": "Great sound, but the touch controls are a bit finicky.",
+                            "review_date": "2024-10-07",
+                            "reviewer_name": "Michael T.",
+                            "review_rating": 4
+                        }
+                    ]
+                },
+                {
+                    "product_id": "p3",
+                    "product_name": "Apple AirPods Max",
+                    "price": 549.99,
+                    "currency": "USD",
+                    "rating": 4.7,
+                    "link": "https://example.com/products/p3",
+                    "availability": "In Stock",
+                    "discount": {
+                        "amount": 20,
+                        "type": "Flat",
+                        "valid_until": "2024-10-30"
+                    },
+                    "product_images": [
+                        "https://example.com/images/p3_1.jpg",
+                        "https://example.com/images/p3_2.jpg"
+                    ],
+                    "reviews": [
+                        {
+                            "review_id": "r5",
+                            "review_text": "Incredible sound quality! Love the build.",
+                            "review_date": "2024-10-06",
+                            "reviewer_name": "Chris P.",
+                            "review_rating": 5
+                        },
+                        {
+                            "review_id": "r6",
+                            "review_text": "Heavy and not very portable, but sound is unbeatable.",
+                            "review_date": "2024-10-08",
+                            "reviewer_name": "Emily R.",
+                            "review_rating": 4
+                        }
+                    ]
+                }
+            ],
+            "search_device": "Mobile",
+            "search_location": "New York, NY",
+            "time_spent": {
+                "total": 180,
+                "product_details": 90,
+                "comparison": 60,
+                "checkout": 30
+            },
+            "related_searches": [
+                {
+                    "query": "bluetooth speakers",
+                    "search_date": "2024-10-05T10:15:00Z"
+                },
+                {
+                    "query": "over-ear headphones",
+                    "search_date": "2024-10-05T10:30:00Z"
+                }
+            ],
+            "previous_interactions": [
+                {
+                    "interaction_id": "i1",
+                    "type": "view",
+                    "product_id": "p4",
+                    "interaction_date": "2024-09-29"
+                },
+                {
+                    "interaction_id": "i2",
+                    "type": "add_to_cart",
+                    "product_id": "p5",
+                    "interaction_date": "2024-09-30"
+                }
+            ]
+        },
+        {
+            "customer_id": "c102",
+            "search_id": "sh2",
+            "search_query": "smartphone under $500",
+            "search_date": "2024-10-06T14:25:00Z",
+            "results_count": 30,
+            "filters_applied": {
+                "category": "Electronics",
+                "brand": [
+                    "Samsung",
+                    "OnePlus",
+                    "Xiaomi"
+                ],
+                "price_range": {
+                    "min": 200,
+                    "max": 500
+                },
+                "rating": {
+                    "min": 4.0,
+                    "max": 5.0
+                },
+                "features": {
+                    "4G": true,
+                    "5G": false,
+                    "screen_size": {
+                        "min": 5.5,
+                        "max": 6.7
+                    }
+                }
+            },
+            "results": [
+                {
+                    "product_id": "p6",
+                    "product_name": "Samsung Galaxy A52",
+                    "price": 399.99,
+                    "currency": "USD",
+                    "rating": 4.7,
+                    "link": "https://example.com/products/p6",
+                    "availability": "In Stock",
+                    "discount": {
+                        "amount": 50,
+                        "type": "Flat",
+                        "valid_until": "2024-10-31"
+                    },
+                    "product_images": [
+                        "https://example.com/images/p6_1.jpg",
+                        "https://example.com/images/p6_2.jpg"
+                    ],
+                    "reviews": [
+                        {
+                            "review_id": "r7",
+                            "review_text": "Great phone for the price! Excellent camera.",
+                            "review_date": "2024-10-06",
+                            "reviewer_name": "Sophia L.",
+                            "review_rating": 5
+                        },
+                        {
+                            "review_id": "r8",
+                            "review_text": "Battery life could be better, but overall satisfied.",
+                            "review_date": "2024-10-07",
+                            "reviewer_name": "James W.",
+                            "review_rating": 4
+                        }
+                    ]
+                },
+                {
+                    "product_id": "p7",
+                    "product_name": "OnePlus Nord N200",
+                    "price": 249.99,
+                    "currency": "USD",
+                    "rating": 4.5,
+                    "link": "https://example.com/products/p7",
+                    "availability": "In Stock",
+                    "discount": {
+                        "amount": 30,
+                        "type": "Flat",
+                        "valid_until": "2024-10-25"
+                    },
+                    "product_images": [
+                        "https://example.com/images/p7_1.jpg",
+                        "https://example.com/images/p7_2.jpg"
+                    ],
+                    "reviews": [
+                        {
+                            "review_id": "r9",
+                            "review_text": "Fantastic value for a 5G phone!",
+                            "review_date": "2024-10-06",
+                            "reviewer_name": "David B.",
+                            "review_rating": 5
+                        },
+                        {
+                            "review_id": "r10",
+                            "review_text": "Decent performance, great for everyday use.",
+                            "review_date": "2024-10-07",
+                            "reviewer_name": "Emily J.",
+                            "review_rating": 4
+                        }
+                    ]
+                },
+                {
+                    "product_id": "p8",
+                    "product_name": "Moto G Power (2021)",
+                    "price": 199.99,
+                    "currency": "USD",
+                    "rating": 4.2,
+                    "link": "https://example.com/products/p8",
+                    "availability": "In Stock",
+                    "discount": {
+                        "amount": 20,
+                        "type": "Flat",
+                        "valid_until": "2024-11-05"
+                    },
+                    "product_images": [
+                        "https://example.com/images/p8_1.jpg",
+                        "https://example.com/images/p8_2.jpg"
+                    ],
+                    "reviews": [
+                        {
+                            "review_id": "r11",
+                            "review_text": "Incredible battery life! Lasts for days.",
+                            "review_date": "2024-10-06",
+                            "reviewer_name": "Mike A.",
+                            "review_rating": 5
+                        },
+                        {
+                            "review_id": "r12",
+                            "review_text": "Camera quality could be improved, but great overall.",
+                            "review_date": "2024-10-07",
+                            "reviewer_name": "Laura K.",
+                            "review_rating": 4
+                        }
+                    ]
+                }
+            ],
+            "search_device": "Desktop",
+            "search_location": "Los Angeles, CA",
+            "time_spent": {
+                "total": 240,
+                "product_details": 120,
+                "comparison": 80,
+                "checkout": 40
+            },
+            "related_searches": [
+                {
+                    "query": "best budget smartphones",
+                    "search_date": "2024-10-06T14:45:00Z"
+                },
+                {
+                    "query": "smartphone accessories",
+                    "search_date": "2024-10-06T14:50:00Z"
+                }
+            ],
+            "previous_interactions": [
+                {
+                    "interaction_id": "i3",
+                    "type": "view",
+                    "product_id": "p9",
+                    "interaction_date": "2024-09-30"
+                },
+                {
+                    "interaction_id": "i4",
+                    "type": "add_to_cart",
+                    "product_id": "p10",
+                    "interaction_date": "2024-10-01"
+                }
+            ]
+        }
+    ]
+}
+--------------------------------------------------------------------------------
+Extracting data from JSON file: sample5.json
+
+{
+    "canceled_orders": [
+        {
+            "order_id": "o101",
+            "customer_id": "c101",
+            "cancellation_date": "2024-10-10T15:30:00Z",
+            "original_order_date": "2024-10-05T12:00:00Z",
+            "total_amount": 199.99,
+            "currency": "USD",
+            "payment_method": "Credit Card",
+            "shipping_address": {
+                "name": "John Doe",
+                "address_line_1": "123 Main St",
+                "address_line_2": "Apt 4B",
+                "city": "New York",
+                "state": "NY",
+                "zip_code": "10001",
+                "country": "USA",
+                "phone_number": "+1-234-567-8901"
+            },
+            "cancellation_reason": "Customer changed their mind",
+            "products": [
+                {
+                    "product_id": "p1",
+                    "product_name": "Wireless Bluetooth Speaker",
+                    "price": 99.99,
+                    "quantity": 1,
+                    "link": "https://example.com/products/p1",
+                    "product_images": [
+                        "https://example.com/images/p1_1.jpg",
+                        "https://example.com/images/p1_2.jpg"
+                    ],
+                    "product_description": "A high-quality wireless speaker with immersive sound and deep bass. Perfect for parties or outdoor gatherings.",
+                    "features": [
+                        "Bluetooth 5.0 connectivity",
+                        "12-hour battery life",
+                        "Water-resistant design",
+                        "Built-in microphone for hands-free calls"
+                    ],
+                    "warranty": {
+                        "duration": "1 Year",
+                        "details": "Covers manufacturing defects and malfunctions."
+                    }
+                },
+                {
+                    "product_id": "p2",
+                    "product_name": "USB-C Charging Cable",
+                    "price": 19.99,
+                    "quantity": 2,
+                    "link": "https://example.com/products/p2",
+                    "product_images": [
+                        "https://example.com/images/p2_1.jpg",
+                        "https://example.com/images/p2_2.jpg"
+                    ],
+                    "product_description": "Durable USB-C charging cable for fast data transfer and charging. Compatible with all USB-C devices.",
+                    "features": [
+                        "Data transfer speed of up to 480 Mbps",
+                        "Reversible connector design",
+                        "Tangle-free design"
+                    ],
+                    "warranty": {
+                        "duration": "6 Months",
+                        "details": "Covers cable functionality under normal use."
+                    }
+                }
+            ],
+            "customer_feedback": {
+                "rating": 2,
+                "comments": "I decided to go with a different brand for the speaker. I found a better option elsewhere."
+            },
+            "refund_status": {
+                "amount_refunded": 199.99,
+                "refund_date": "2024-10-11T10:00:00Z",
+                "refund_method": "Credit Card",
+                "processing_time": "3-5 business days"
+            },
+            "previous_interactions": [
+                {
+                    "interaction_id": "i1",
+                    "type": "view",
+                    "product_id": "p1",
+                    "interaction_date": "2024-10-04T10:00:00Z",
+                    "duration_seconds": 120
+                },
+                {
+                    "interaction_id": "i2",
+                    "type": "add_to_cart",
+                    "product_id": "p1",
+                    "interaction_date": "2024-10-05T11:00:00Z",
+                    "duration_seconds": 300
+                },
+                {
+                    "interaction_id": "i3",
+                    "type": "remove_from_cart",
+                    "product_id": "p2",
+                    "interaction_date": "2024-10-06T14:00:00Z",
+                    "duration_seconds": 60
+                }
+            ],
+            "related_orders": [
+                {
+                    "order_id": "o102",
+                    "cancellation_date": "2024-10-09T16:45:00Z",
+                    "total_amount": 49.99,
+                    "currency": "USD",
+                    "products": [
+                        {
+                            "product_id": "p3",
+                            "product_name": "Portable Phone Charger",
+                            "price": 49.99,
+                            "quantity": 1,
+                            "link": "https://example.com/products/p3",
+                            "product_images": [
+                                "https://example.com/images/p3_1.jpg",
+                                "https://example.com/images/p3_2.jpg"
+                            ],
+                            "product_description": "Compact and lightweight, this portable charger is perfect for on-the-go charging. Fast charging technology ensures quick power up for your devices.",
+                            "features": [
+                                "Compatible with most smartphones and tablets",
+                                "LED indicator for battery status",
+                                "Safety features to prevent overheating"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "customer_service_interaction": {
+                "contact_date": "2024-10-10T09:00:00Z",
+                "contact_method": "Live Chat",
+                "agent_name": "Sarah",
+                "issues_addressed": [
+                    {
+                        "issue_id": "i4",
+                        "description": "Clarification on cancellation process"
+                    },
+                    {
+                        "issue_id": "i5",
+                        "description": "Questions regarding refund timing"
+                    }
+                ],
+                "resolution": "Provided guidance on the cancellation process and assured the customer of the refund timeline."
+            }
+        },
+        {
+            "order_id": "o102",
+            "customer_id": "c102",
+            "cancellation_date": "2024-10-09T18:45:00Z",
+            "original_order_date": "2024-10-06T09:15:00Z",
+            "total_amount": 150.0,
+            "currency": "USD",
+            "payment_method": "PayPal",
+            "shipping_address": {
+                "name": "Jane Smith",
+                "address_line_1": "456 Elm St",
+                "address_line_2": "",
+                "city": "Los Angeles",
+                "state": "CA",
+                "zip_code": "90001",
+                "country": "USA",
+                "phone_number": "+1-987-654-3210"
+            },
+            "cancellation_reason": "Item out of stock",
+            "products": [
+                {
+                    "product_id": "p4",
+                    "product_name": "Smartwatch Series 5",
+                    "price": 150.0,
+                    "quantity": 1,
+                    "link": "https://example.com/products/p4",
+                    "product_images": [
+                        "https://example.com/images/p4_1.jpg",
+                        "https://example.com/images/p4_2.jpg"
+                    ],
+                    "product_description": "Latest smartwatch with advanced health monitoring features. Perfect for fitness enthusiasts.",
+                    "features": [
+                        "Heart rate monitoring",
+                        "GPS tracking",
+                        "Customizable watch faces",
+                        "Water-resistant up to 50 meters"
+                    ],
+                    "warranty": {
+                        "duration": "1 Year",
+                        "details": "Covers manufacturing defects and malfunction."
+                    }
+                }
+            ],
+            "customer_feedback": {
+                "rating": 1,
+                "comments": "Very disappointed, the item was listed as available but turned out to be out of stock."
+            },
+            "refund_status": {
+                "amount_refunded": 150.0,
+                "refund_date": "2024-10-10T12:00:00Z",
+                "refund_method": "PayPal",
+                "processing_time": "Immediate"
+            },
+            "previous_interactions": [
+                {
+                    "interaction_id": "i6",
+                    "type": "view",
+                    "product_id": "p4",
+                    "interaction_date": "2024-10-06T08:00:00Z",
+                    "duration_seconds": 150
+                },
